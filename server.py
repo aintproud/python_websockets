@@ -1,15 +1,15 @@
 
 import asyncio
 import websockets
+import json
 
 async def hello(websocket):
-    async for name in websocket:
-        print(f"<<< {name}")
-
-        greeting = f"Hello {name}!"
-
-        await websocket.send(greeting)
-        print(f">>> {greeting}")
+    async for message in websocket:
+        message = json.loads(message)
+        print(message)
+        
+        if message['topic'] == 'name': await websocket.send(f'hi {message["text"]}')
+        elif message['topic'] == 'propose': await websocket.send(f'you are the boss, {message["text"]} means {message["text"]}')
 
 
 async def main():
