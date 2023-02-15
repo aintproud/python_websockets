@@ -15,14 +15,14 @@ async def hello():
             greeting = await websocket.recv()
             print(f">>> {greeting}")
 
-            message = {"topic": 'propose', "text": v, "vuv": input(">>> Wanna go out?")}
+            message = {"topic": 'propose', "text": v, "vuv": input(">>> Wanna go out? ")}
             vsvod = json.dumps(message)
             print("<<<",message["vuv"])
             await websocket.send(vsvod)
             greeting = await websocket.recv()
             print(f">>> {greeting}")
 
-            message = {"topic": 'news', "text": v, "drop": input(">>> Want to know more?")}
+            message = {"topic": 'news', "text": v, "drop": input(">>> Want to know more? ")}
             vsvod = json.dumps(message)
             print("<<<", message["drop"])
             await websocket.send(vsvod)
