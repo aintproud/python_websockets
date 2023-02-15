@@ -7,7 +7,6 @@ async def hello():
     async with websockets.connect(uri) as websocket:
         while True:
             message = json.dumps({"topic": 'name', "text": input("What's your name?")})
-            print(message)
             await websocket.send(message)
             greeting = await websocket.recv()
             print(f"<<< {greeting}")
@@ -15,7 +14,6 @@ async def hello():
             message = json.dumps({"topic": 'propose', "text": input("Wanna go out?")})
             
             await websocket.send(message)
-            print(f">>> {message}")
 
             greeting = await websocket.recv()
             print(f"<<< {greeting}")
